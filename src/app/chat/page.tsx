@@ -1,8 +1,19 @@
+'use client'
+
 import React from 'react'
+import { sendHi } from './actions'
 
 function ChatSection() {
   return (
-    <div>ChatSection</div>
+    <div>
+      <button
+      onClick={() => {
+        sendHi()
+      }}
+      >
+        Click me
+      </button>
+    </div>
   )
 }
 

@@ -1,10 +1,10 @@
-import LoginBtn from '../components/LoginBtn'
+import Header from '../components/Header'
 
 export default function Home() {
   return (
     <div className="">
-      Hello World this is the base page no navbar yet.
-      <LoginBtn />
+      <Header />
+      Now we got a navbar lmao
     </div>
   );
 }

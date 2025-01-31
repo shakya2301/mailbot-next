@@ -12,7 +12,7 @@ const handler = NextAuth({
                   prompt: "consent",
                   access_type: "offline",
                   response_type: "code",
-                  scope : ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/gmail.readonly" , "https://www.googleapis.com/auth/gmail.send"].join(" ")
+                  scope : ['openid', "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email","https://www.googleapis.com/auth/gmail.readonly" , "https://www.googleapis.com/auth/gmail.send"].join(" ")
                 }
             }
         })
@@ -26,7 +26,9 @@ const handler = NextAuth({
         // async redirect({ url, baseUrl }) {
         //   return baseUrl
         // },
-        async jwt({ token, user, account }) {
+        async jwt({ token, user, account, profile, isNewUser }) {
+
+          console.log("User : ", user , "Profile : ", profile , "Account : ", account)
             // Initial sign in
             if (account && user) {
               return {
@@ -35,6 +37,7 @@ const handler = NextAuth({
                 issued_at: Date.now(),
                 expires_at: Date.now() + Number(account.expires_in) * 1000, // 3600 seconds
                 refresh_token: account.refresh_token,
+                email: user.email || account.email,
               };
             } else if (Date.now() < Number(token.expires_at)) {
               return token;

@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SessionProvider>
-      <body>
+      <body className="dark">
         {children}
       </body>
       </SessionProvider>
