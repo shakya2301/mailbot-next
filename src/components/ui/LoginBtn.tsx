@@ -12,12 +12,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+
 function LoginBtn() {
   const { data: session, status } = useSession();
+  console.log("session in sign in", session);
   const imageLink = session?.picture;
   const namearray = session?.user?.name.split(" ") || ["O", "O"];
   const fallback = namearray[0][0] + namearray[1][0];
-  console.log(imageLink);
+  console.log("img link " ,imageLink);
+  
   return !session ? (
     <div>
       <button onClick={() => signIn("google")}>
@@ -33,8 +36,8 @@ function LoginBtn() {
         <div className="m-4">
           <Avatar className="w-8 h-8">
             <AvatarImage
-              src={session?.user?.image}
-              alt={session?.user?.name ?? ""}
+              src={imageLink}
+              alt={session?.user?.name  ?? ""}
             />
 
             {/* <img src={session.user.image} alt={session.user.name ?? ""} className="w-8 h-8 rounded-full" /> */}

@@ -2,19 +2,15 @@
 
 import React from 'react'
 import { sendHi } from './actions'
+import { useSession } from 'next-auth/react'
+import ChatSection from '@/components/chatSection'
 
-function ChatSection() {
+function ChatPage() {
   return (
-    <div>
-      <button
-      onClick={() => {
-        sendHi()
-      }}
-      >
-        Click me
-      </button>
+    <div className='h-screen w-screen'>
+      <ChatSection/>
     </div>
   )
 }
 
-export default ChatSection
+export default ChatPage

@@ -3,7 +3,7 @@ import LoginBtn from "./LoginBtn";
 
 export function Navbar() {
   return (
-    <header className="bg-white dark:bg-transparent dark:shadow-white dark: shadow-md">
+    <header className="bg-white dark:bg-gray-900 dark:shadow-white dark: shadow-md">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
