@@ -3,7 +3,7 @@
 import React from 'react'
 import { sendHi } from './actions'
 import { useSession } from 'next-auth/react'
-import ChatSection from '@/components/chatSection'
+import ChatSection from '@/components/ChatSection'
 
 function ChatPage() {
   return (
