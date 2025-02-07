@@ -23,6 +23,33 @@ const parseContent = (contentStr) => {
   }
 };
 
+const renderObject = (data) => {
+  if (typeof data !== "object" || data === null) {
+    return <p>{String(data)}</p>; // If it's a primitive, display it directly
+  }
+
+  if (Array.isArray(data)) {
+    return (
+      <ul className="list-disc pl-4">
+        {data.map((item, index) => (
+          <li key={index}>{renderObject(item)}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <div className="p-2 bg-gray-800 text-white rounded-md">
+      {Object.entries(data).map(([key, value], index) => (
+        <div key={index} className="mb-1">
+          <strong className="capitalize">{key}:</strong> {renderObject(value)}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+
 
 
 function ChatSection() {
@@ -160,7 +187,7 @@ function ChatSection() {
                           : "self-end bg-gray-700 text-white"
                       )}
                     >
-                      {msgObj.parsed.reply || msgObj.parsed.output || msgObj.parsed.content || msgObj.parsed.generation && (typeof(msgObj.parsed.generation) == "object" ? (`Subject : ${msgObj.parsed?.generation?.subject} Body : ${msgObj.parsed?.generation?.body}`) : (msgObj.parsed.generation)) || msgObj.parsed.observation || msgObj.parsed.error || msgObj.parsed.waiting || msgObj.parsed.message}
+                      {msgObj.parsed.reply || msgObj.parsed.output || msgObj.parsed.content || msgObj.parsed.generation && (typeof(msgObj.parsed.generation) == "object" ? (`Subject : ${msgObj.parsed?.generation?.subject} Body : ${msgObj.parsed?.generation?.body}`) : (msgObj.parsed.generation)) || msgObj.parsed.error || msgObj.parsed.waiting || msgObj.parsed.message}
                     </div>
                   ))}
               </div>
@@ -184,7 +211,7 @@ function ChatSection() {
       </ResizablePanelGroup>
       <button
       onClick={() => {
-        mailSender({subject: "Test", body: "Test", html: ""}, "kavya.shakya23@gmail.com")
+          fetchAndParseEmails(2).then((data) => console.log(data))
       }}
       >
         Click me

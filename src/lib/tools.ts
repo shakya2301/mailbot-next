@@ -44,7 +44,7 @@ export async function fetchAndParseEmails(days = 1) {
       throw new Error(data.error || "Failed to fetch emails");
     }
 
-    return true; // Returns parsed emails
+    return data; // Returns parsed emails
   } catch (error) {
     console.error("Error fetching emails:", error);
     return null;
